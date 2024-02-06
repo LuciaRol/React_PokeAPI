@@ -1,0 +1,14 @@
+-- Crear proyecto React de forma local:
+npm create vite@latest moz-todo-react -- --template react
+(Hay más comandos pero este proyecto fue con npm)
+Ver: https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/React_getting_started
+
+-- Instalar los módulos node
+npm install
+
+-- Crear componentes:
+Se hacen a mano dentro dentro del proyecto.
+Los ficheros tienen que tener extensión .jsx
+
+-- Para lanzar el servidor:
+npm run dev
