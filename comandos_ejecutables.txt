@@ -12,3 +12,15 @@ Los ficheros tienen que tener extensión .jsx
 
 -- Para lanzar el servidor:
 npm run dev
+
+
+** Para instalar bootstrap en un proyecto react
+npm install react-bootstrap bootstrap
+
+** Para poder usar los componentes, se ha de hacer con imports, ejemplo:
+import Navbar from "react-bootstrap/Navbar";
+
+----------------------------------------------------------------------------
+
+Imagen usuario pikachu:
+<a href="https://flyclipart.com/es/free-pokemon-pikachu-icon-food-animal-egg-hd-png-download-1255813" title="Descargar Png / Icono De Pikachu De Pokemon, Comida, Animal, Huevo Hd Png"><img src="https://flyclipart.com/thumbs/free-pokemon-pikachu-icon-1255813.png" width="350" /></a>

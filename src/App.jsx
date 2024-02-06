@@ -1,14 +1,13 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import ListaPokemon from './Components/ListaPokemon'
+import Menu from './Components/Menu'
 
 function App() {
-  
-
   return (
+
     <>
+      <Menu></Menu>
       <ListaPokemon></ListaPokemon>
       
       
