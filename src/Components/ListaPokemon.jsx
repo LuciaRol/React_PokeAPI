@@ -1,65 +1,60 @@
-import {useState,useEffect} from 'react'
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Navegacion from './Navegacion';
 import Busqueda from './BusquedaPokemon';
 import DetallePokemon from './DetallePokemon';
 
-import {
-  Link
-} from "react-router-dom";
-
-let url;
-
-function ListaPokemon(){
+function ListaPokemon() {
     const [listaPokemon, setListaPokemon] = useState([]);
-   
-
-    function cargarMas(){
-        fetch(url)
-          .then((response) => response.json())
-          .then((datosPokemon) => {
-            console.log(datosPokemon)
-            url = datosPokemon.next;
-            setListaPokemon([...listaPokemon,...datosPokemon.results])
-            
-          });
-    }
 
     useEffect(() => {
-        fetch("https://pokeapi.co/api/v2/pokemon/?offset=&&limit=8")
-          .then((response) => response.json())
-          .then((datosPokemon) => {
-            console.log(datosPokemon)
-            url = datosPokemon.next;
-            setListaPokemon([...listaPokemon,...datosPokemon.results])
-            
-          });
-      }, []);
+        fetch('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=8')
+            .then(response => response.json())
+            .then(datosPokemon => {
+                setListaPokemon(datosPokemon.results);
+            });
+    }, []);
 
-      const handleSaberMas = (pokemonUrl) => {
-        // aquí irá a ruta al detalle
-        console.log("Saber más sobre:", pokemonUrl);
-      };
+    const cargarMas = () => {
+        fetch('https://pokeapi.co/api/v2/pokemon/?offset=' + listaPokemon.length + '&limit=8')
+            .then(response => response.json())
+            .then(datosPokemon => {
+                setListaPokemon(prevListaPokemon => [...prevListaPokemon, ...datosPokemon.results]);
+            });
+    };
 
-      
-      let lista = listaPokemon.map(nombre =>
+    const handleSaberMas = pokemonUrl => {
+        console.log('Saber más sobre:', pokemonUrl);
+        // Aquí puedes hacer lo que necesites cuando se selecciona un Pokémon
+    };
+
+    let lista = listaPokemon.map((pokemon, index) => (
+      <>
+        <li key={pokemon.name}>
+            <span>{index + 1} </span>
+            <img
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`}
+                alt={pokemon.name}
+            />
+            {pokemon.name}
+            <button onClick={() => handleSaberMas(pokemon.url)}>
+                <Link to={`/detalle/${pokemon.url.split('/')[6]}`}>
+                    <span className="nav-link">Saber más</span>
+                </Link>
+            </button>
+        </li>
+      </>
+    ));
+
+    return (
         <>
-          <li key={nombre.name}>
-            {nombre.name}
-            <button onClick={() => handleSaberMas(pokemon.url)}><Link to="/detalle/32"><span class="nav-link">Saber más</span></Link></button>
-          </li>
-        </>
-
-      )
-
-    return(
-        <>
-            <h1>Componente para lista Pokemon</h1>
-            <ul>
+          <h1>Componente para lista Pokémon</h1>
+          <ul>
               {lista}
-            </ul>
-            <button onClick={cargarMas}>Cargar más</button>
+          </ul>
+          <button onClick={cargarMas}>Cargar más</button>
         </>
-
-    )
+    );
 }
-export default ListaPokemon
+
+export default ListaPokemon;

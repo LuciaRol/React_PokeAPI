@@ -30,7 +30,6 @@ const router = createBrowserRouter([
     element: 
     <>
       <Navegacion></Navegacion>
-      <Busqueda></Busqueda>
       <ListaPokemon/>
       <Footer></Footer>
       

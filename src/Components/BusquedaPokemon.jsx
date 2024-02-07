@@ -36,6 +36,7 @@ function Busqueda() {
             <table>
                 <thead>
                     <tr>
+                        <th>Número</th>
                         <th>Imagen</th>
                         <th>Nombre</th>
                         <th>Altura</th>
@@ -44,6 +45,7 @@ function Busqueda() {
                 </thead>
                 <tbody>
                     <tr>
+                        <td>{detallesPokemon.id}</td>
                         <td>
                             <img src={detallesPokemon.sprites.front_default} alt={detallesPokemon.name} style={{ width: '100px' }} />
                         </td>
@@ -58,17 +60,21 @@ function Busqueda() {
     };
     
     
-
+    let buscar = 
+    <>
+        <input
+            type="text"
+            placeholder='Introduce el nombre de un Pokémon'
+            value={nombrePokemon}
+            onChange={handleCambioInput}
+            onKeyDown={handleKeyDown} 
+        />
+    </>
+    
     return (
         <>
             <div className="btn-group">
-                <input
-                    type="text"
-                    placeholder='Introduce el nombre de un Pokémon'
-                    value={nombrePokemon}
-                    onChange={handleCambioInput}
-                    onKeyDown={handleKeyDown} // Agregamos el e onKeyDown
-                />
+                {buscar}
                 <button className="btn" onClick={buscarPokemon}>Buscar</button>
             </div>
 

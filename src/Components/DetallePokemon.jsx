@@ -13,14 +13,13 @@ export default function DetallePokemon() {
 
   return (
     <>
-    <section>
-        <div class="btn-group">
-            <button class="btn"><Link to="/listapokemon"><span class="nav-link">Volver</span></Link></button>
-            <button class="btn"><Link to="/jugar"><span class="nav-link">Ir a jugar</span></Link></button>
-          </div>
-        <div>Aquí van los detalles del Pokémon{id}</div>
-    </section>
-      
+      <section>
+          <div class="btn-group">
+              <button class="btn"><Link to="/listapokemon"><span class="nav-link">Volver</span></Link></button>
+              <button class="btn"><Link to="/jugar"><span class="nav-link">Ir a jugar</span></Link></button>
+            </div>
+          <div>Aquí van los detalles del Pokémon{id}</div>
+      </section>
     </>
     
 
