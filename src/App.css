@@ -84,6 +84,15 @@ header{
 
 
 /* FOOTER */
+footer{
+  background-color: var(--bg-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  bottom: 0;
+  position: relative;
+  width: 100vw;
+}
 
 
 
