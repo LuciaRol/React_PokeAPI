@@ -42,7 +42,7 @@ const router = createBrowserRouter([
     element: 
     <>
       <Navegacion></Navegacion>
-      <div class="reverse">
+      <div class="containerdetalle">
         <Busqueda></Busqueda>
         <DetallePokemon/>
       </div>

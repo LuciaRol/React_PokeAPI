@@ -94,7 +94,9 @@ footer{
   width: 100vw;
 }
 
-.reverse{
+
+/* COMPONENTE DETALLE */
+.containerdetalle{
   display:flex;
 }
 
