@@ -1,15 +1,14 @@
 import { useState } from 'react'
 import './App.css'
 import ListaPokemon from './Components/ListaPokemon'
-import Menu from './Components/Menu'
+import Navegacion from './Components/Navegacion'
+import Landing from './Components/Landing'
 
 function App() {
   return (
 
     <>
-      <Menu></Menu>
-      <ListaPokemon></ListaPokemon>
-      
+      <Navegacion></Navegacion>
       
     </>
   )

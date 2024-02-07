@@ -13,12 +13,8 @@ Los ficheros tienen que tener extensión .jsx
 -- Para lanzar el servidor:
 npm run dev
 
-
-** Para instalar bootstrap en un proyecto react
-npm install react-bootstrap bootstrap
-
-** Para poder usar los componentes, se ha de hacer con imports, ejemplo:
-import Navbar from "react-bootstrap/Navbar";
+-- Instalar los routers
+npm install react-router-dom
 
 ----------------------------------------------------------------------------
 

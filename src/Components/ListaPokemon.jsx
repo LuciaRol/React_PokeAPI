@@ -1,4 +1,5 @@
 import {useState,useEffect} from 'react'
+import Navegacion from './Navegacion';
 
 let url;
 
