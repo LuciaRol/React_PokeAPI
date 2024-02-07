@@ -8,8 +8,8 @@ function App() {
   return (
 
     <>
-      <Navegacion></Navegacion>
       
+      <Landing></Landing>
     </>
   )
 }

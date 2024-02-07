@@ -16,6 +16,7 @@ const router = createBrowserRouter([
     element: 
     <>
       <Navegacion></Navegacion>
+      <App></App>
     </>
     ,
     errorElement:<h1>Ruta no valida</h1>
