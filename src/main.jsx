@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import Navegacion from './Components/Navegacion.jsx'
 import DetallePokemon from './Components/DetallePokemon.jsx'
+import Footer from './Components/Footer.jsx';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
     <>
       <Navegacion></Navegacion>
       <App></App>
+      <Footer></Footer>
     </>
     ,
     errorElement:<h1>Ruta no valida</h1>
@@ -26,7 +28,9 @@ const router = createBrowserRouter([
     element: 
     <>
       <Navegacion></Navegacion>
-      <ListaPokemon/>,
+      <ListaPokemon/>
+      <Footer></Footer>
+      
     </>
     
   },
@@ -35,7 +39,8 @@ const router = createBrowserRouter([
     element: 
     <>
       <Navegacion></Navegacion>
-      <DetallePokemon/>,
+      <DetallePokemon/>
+      <Footer></Footer>
     </>
     
   }, 
