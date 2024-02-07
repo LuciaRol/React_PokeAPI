@@ -28,8 +28,19 @@ function ListaPokemon(){
           });
       }, []);
 
+      const handleSaberMas = (pokemonUrl) => {
+        // aquí irá a ruta al detalle
+        console.log("Saber más sobre:", pokemonUrl);
+      };
+
+      
       let lista = listaPokemon.map(nombre =>
-        <li key={nombre.name}>{nombre.name}</li>
+        <>
+          <li key={nombre.name}>
+            {nombre.name}
+            <button onClick={() => handleSaberMas(pokemon.url)}>Saber más</button>
+          </li>
+        </>
 
       )
 
@@ -37,9 +48,8 @@ function ListaPokemon(){
         <>
             <h1>Componente para lista Pokemon</h1>
             <ul>
-                {lista}
+              {lista}
             </ul>
-
             <button onClick={cargarMas}>Cargar más</button>
         </>
 
