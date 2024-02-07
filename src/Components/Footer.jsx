@@ -12,7 +12,7 @@ function Footer(){
         <>
             <footer class="footer">
                 <div class="nav-footer">
-                    <p>2024 Lucía Rodríguez López</p>
+                    <p>&#169; 2024 Lucía Rodríguez López</p>
                     <button class="btn">Check my github!</button>
                 </div>
             </footer>

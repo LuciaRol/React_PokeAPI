@@ -10,6 +10,8 @@ import {
 import Navegacion from './Components/Navegacion.jsx'
 import DetallePokemon from './Components/DetallePokemon.jsx'
 import Footer from './Components/Footer.jsx';
+import Busqueda from './Components/BusquedaPokemon.jsx';
+import Jugar from './Components/Jugar.jsx'
 
 const router = createBrowserRouter([
   {
@@ -28,6 +30,7 @@ const router = createBrowserRouter([
     element: 
     <>
       <Navegacion></Navegacion>
+      <Busqueda></Busqueda>
       <ListaPokemon/>
       <Footer></Footer>
       
@@ -39,7 +42,22 @@ const router = createBrowserRouter([
     element: 
     <>
       <Navegacion></Navegacion>
-      <DetallePokemon/>
+      <div class="reverse">
+        <Busqueda></Busqueda>
+        <DetallePokemon/>
+      </div>
+      
+      
+      <Footer></Footer>
+    </>
+    
+  }, 
+  {
+    path: "jugar",
+    element: 
+    <>
+      <Navegacion></Navegacion>
+      <Jugar/>
       <Footer></Footer>
     </>
     

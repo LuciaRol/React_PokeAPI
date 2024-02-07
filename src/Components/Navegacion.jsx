@@ -16,6 +16,7 @@ function Navegacion(){
                     <Link to="/"><span class="nav-link">Inicio</span></Link>
                     <Link to="/listapokemon"><span class="nav-link">Pokédex</span></Link>
                     <Link to="/detalle/32"><span class="nav-link">Detalle</span></Link>
+                    <Link to="/jugar"><span class="nav-link">Jugar</span></Link>
                 </div>
                 
             </header>

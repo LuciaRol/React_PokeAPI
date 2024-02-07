@@ -1,5 +1,11 @@
 import {useState,useEffect} from 'react'
 import Navegacion from './Navegacion';
+import Busqueda from './BusquedaPokemon';
+import DetallePokemon from './DetallePokemon';
+
+import {
+  Link
+} from "react-router-dom";
 
 let url;
 
@@ -39,7 +45,7 @@ function ListaPokemon(){
         <>
           <li key={nombre.name}>
             {nombre.name}
-            <button onClick={() => handleSaberMas(pokemon.url)}>Saber más</button>
+            <button onClick={() => handleSaberMas(pokemon.url)}><Link to="/detalle/32"><span class="nav-link">Saber más</span></Link></button>
           </li>
         </>
 

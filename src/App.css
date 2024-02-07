@@ -94,6 +94,15 @@ footer{
   width: 100vw;
 }
 
+.reverse{
+  display:flex;
+}
+
+section{
+  display: flex;
+  flex-direction: column;
+}
+
 
 
 
