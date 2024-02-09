@@ -42,7 +42,7 @@ const router = createBrowserRouter([
     element: 
     <>
       <Navegacion></Navegacion>
-      <DetallePokemon/>
+      <DetallePokemon />
       <Footer></Footer>
     </>
     

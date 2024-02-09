@@ -115,7 +115,7 @@ function Busqueda() {
 
     return (
         <>
-            <div class="container">
+            <div class="container-search">
                 <div class="row justify-content-center">
                     <div class="col-md-6">
                         <div class="card mt-5">

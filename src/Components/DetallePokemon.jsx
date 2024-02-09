@@ -8,9 +8,10 @@ import {
   Link
 } from "react-router-dom";
 
-
 export default function DetallePokemon() {
     let {id}=useParams()
+
+    https://pokeapi.co/api/v2/pokemon/{id}/
 
   return (
     <>

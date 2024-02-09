@@ -72,7 +72,7 @@ body{
 
 /* HEADER - MENÚ DE NAVEGACIÓN */
 header{
-  background-color: var(--main-color);
+  background-color: var(--contrast-color);
   display: flex;
   justify-content: space-between;
   top: 0;
@@ -102,6 +102,15 @@ header .nav-link:hover{
 }
 
 
+/* BÚSQUEDA */
+.container-search{
+  background-color: var(--bg-color);
+}
+
+/* LANDING */
+.container-landing{
+    background: linear-gradient(to bottom, var(--secondary-color), var(--bg-color));
+}
 
 /* FOOTER */
 
@@ -120,6 +129,8 @@ footer .btn{
 }
 
 
+/* COMPONENTE LISTA */
+
 /* COMPONENTE DETALLE */
 .containerdetalle{
   display:flex;
@@ -130,7 +141,7 @@ section{
   flex-direction: column;
 }
 
-/* COMPONENTE LISTA */
+/* JUEGO */
 
 
 

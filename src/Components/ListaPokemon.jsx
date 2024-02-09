@@ -31,6 +31,7 @@ function ListaPokemon() {
     let lista = listaPokemon.map((pokemon, index) => (
         <div key={pokemon.name} class="pokemon-card">
             <img
+                class="img-lista"
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${index + 1}.png`} 
                 alt={pokemon.name}
             />
