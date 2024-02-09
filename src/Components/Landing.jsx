@@ -1,6 +1,7 @@
 import {useState,useEffect} from 'react'
 import ListaPokemon from './ListaPokemon';
 import DetallePokemon from './DetallePokemon';
+import Busqueda from './BusquedaPokemon';
 
 
 function Landing(){

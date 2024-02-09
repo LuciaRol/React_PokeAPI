@@ -29,30 +29,31 @@ function ListaPokemon() {
     };
 
     let lista = listaPokemon.map((pokemon, index) => (
-      <>
-        <li key={pokemon.name}>
-            <span>{index + 1} </span>
+        <div key={pokemon.name} className="pokemon-card">
             <img
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`}
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${index + 1}.png`} 
                 alt={pokemon.name}
             />
-            {pokemon.name}
-            <button onClick={() => handleSaberMas(pokemon.url)}>
+            <div className="pokemon-info">
+                <span>{pokemon.name}</span>
                 <Link to={`/detalle/${pokemon.url.split('/')[6]}`}>
                     <span className="nav-link">Saber más</span>
                 </Link>
-            </button>
-        </li>
-      </>
+            </div>
+        </div>
     ));
 
     return (
         <>
-          <h1>Componente para lista Pokémon</h1>
-          <ul>
-              {lista}
-          </ul>
-          <button onClick={cargarMas}>Cargar más</button>
+        <h1>Componente para lista Pokémon</h1>
+        <div className="card">
+            <div className="pokemon-container">
+                {lista}
+            </div>
+            <button class="btn" onClick={cargarMas}>Cargar más</button>
+        </div>
+            
+            
         </>
     );
 }

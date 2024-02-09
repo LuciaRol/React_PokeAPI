@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import DetallePokemon from './DetallePokemon';
 
 function Busqueda() {
     const [nombrePokemon, setNombrePokemon] = useState('');
@@ -58,7 +59,7 @@ function Busqueda() {
             const speciesResponse = await fetch(datos.species.url);
             const speciesData = await speciesResponse.json();
 
-            // Traducción de tipos y grupos de huevo
+            // Traducción de tipos y grupos huevo
             const tipos = datos.types.map(type => tiposTraducidos[type.type.name]).join(', ');
             const grupoHuevo = speciesData.egg_groups.map(group => gruposHuevoTraducidos[group.name]).join(', ');
 
@@ -88,7 +89,7 @@ function Busqueda() {
     <>
         <input
             type="text"
-            placeholder='Introduce el nombre de un Pokémon'
+            placeholder='Busca tu Pokémon favorito'
             value={nombrePokemon}
             onChange={handleCambioInput}
             onKeyDown={handleKeyDown} 
@@ -125,7 +126,6 @@ function Busqueda() {
                                 </div>
                                 {caracteristicas}
                                 {error && <div className="alert alert-danger">{error}</div>}
-                                
                             </div>
                         </div>
                     </div>

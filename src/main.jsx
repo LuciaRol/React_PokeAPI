@@ -20,10 +20,11 @@ const router = createBrowserRouter([
     <>
       <Navegacion></Navegacion>
       <App></App>
+      <Busqueda></Busqueda>
       <Footer></Footer>
     </>
     ,
-    errorElement:<h1>Ruta no valida</h1>
+    errorElement:<h1>Ruta no válida</h1>
   },
    {
     path: "listapokemon",
@@ -41,13 +42,7 @@ const router = createBrowserRouter([
     element: 
     <>
       <Navegacion></Navegacion>
-      <div class="containerdetalle">
-        <DetallePokemon/>
-        <Busqueda></Busqueda>
-        
-      </div>
-      
-      
+      <DetallePokemon/>
       <Footer></Footer>
     </>
     
