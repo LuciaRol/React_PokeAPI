@@ -116,20 +116,12 @@ function Busqueda() {
     return (
         <>
             <div class="container-search">
-                <div class="row justify-content-center">
-                    <div class="col-md-6">
-                        <div class="card mt-5">
-                            <div class="card-body">
-                                <div class="input-group mb-3">
-                                    {buscar}
-                                    <button class="btn btn-primary" onClick={buscarPokemon}>Buscar</button>
-                                </div>
-                                {caracteristicas}
-                                {error && <div class="alert alert-danger">{error}</div>}
-                            </div>
-                        </div>
-                    </div>
+                <div class="input-group mb-3">
+                    {buscar}
+                    <button class="btn btn-primary" onClick={buscarPokemon}>Buscar</button>
                 </div>
+                {caracteristicas}
+                {error && <div class="alert alert-danger">{error}</div>}
             </div>
         </>
     );
