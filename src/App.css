@@ -53,11 +53,21 @@
 }
 
 :root{
-  --main-color: red;
+  --main-color: #c62828;
+  --secondary-color: #ef5350;
   --bg-color:beige;
-  --link-color: black;
+  --font-color: #000;
+  --contrast-color: #263238;
+
+  --font-size: 1.2rem;
+  --font-size-hover: 1.5rem;
 }
 
+
+/* BODY */
+body{
+  color: var(--font-color);
+}
 
 
 /* HEADER - MENÚ DE NAVEGACIÓN */
@@ -68,22 +78,33 @@ header{
   top: 0;
   position: fixed;
   width: 100vw;
+  box-shadow: 0px 1px 10px #999;
 }
 
-.nav-menu{
+header .logo-img{
+  width: 10rem;
+}
+
+header .nav-menu{
   display: flex;
   align-items: center;
 }
 
-.nav-link{
-  color: var(--link-color);
+header .nav-link{
+  color: var(--bg-color);
   display: flex;
   margin-right: 20px;
+  font-size: var(--font-size);
+}
+header .nav-link:hover{
+  font-size: var(--font-size-hover);
+
 }
 
 
 
 /* FOOTER */
+
 footer{
   background-color: var(--bg-color);
   display: flex;
@@ -92,6 +113,10 @@ footer{
   bottom: 0;
   position: relative;
   width: 100vw;
+}
+
+footer .btn{
+  background-color: var(--bg-color);
 }
 
 

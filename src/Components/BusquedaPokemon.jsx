@@ -99,10 +99,10 @@ function Busqueda() {
     let caracteristicas =
     <>
         {detallesPokemon && (
-            <div className="card mt-3">
+            <div className="card">
                 <div className="card-header">{detallesPokemon.name}</div>
                 <div className="card-body">
-                    <img src={detallesPokemon.sprites.front_default} alt={detallesPokemon.name} className="img-fluid mb-3" />
+                    <img src={detallesPokemon.sprites.front_default} alt={detallesPokemon.name} class="img" />
                     <p><strong>Número:</strong> {detallesPokemon.id}</p>
                     <p><strong>Altura:</strong> {detallesPokemon.height / 10} m</p>
                     <p><strong>Peso:</strong> {detallesPokemon.weight / 10} kg</p>
@@ -115,17 +115,17 @@ function Busqueda() {
 
     return (
         <>
-            <div className="container">
-                <div className="row justify-content-center">
-                    <div className="col-md-6">
-                        <div className="card mt-5">
-                            <div className="card-body">
-                                <div className="input-group mb-3">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="card mt-5">
+                            <div class="card-body">
+                                <div class="input-group mb-3">
                                     {buscar}
-                                    <button className="btn btn-primary" onClick={buscarPokemon}>Buscar</button>
+                                    <button class="btn btn-primary" onClick={buscarPokemon}>Buscar</button>
                                 </div>
                                 {caracteristicas}
-                                {error && <div className="alert alert-danger">{error}</div>}
+                                {error && <div class="alert alert-danger">{error}</div>}
                             </div>
                         </div>
                     </div>

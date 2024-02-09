@@ -29,15 +29,15 @@ function ListaPokemon() {
     };
 
     let lista = listaPokemon.map((pokemon, index) => (
-        <div key={pokemon.name} className="pokemon-card">
+        <div key={pokemon.name} class="pokemon-card">
             <img
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${index + 1}.png`} 
                 alt={pokemon.name}
             />
-            <div className="pokemon-info">
+            <div class="pokemon-info">
                 <span>{pokemon.name}</span>
                 <Link to={`/detalle/${pokemon.url.split('/')[6]}`}>
-                    <span className="nav-link">Saber más</span>
+                    <span class="nav-link">Saber más</span>
                 </Link>
             </div>
         </div>

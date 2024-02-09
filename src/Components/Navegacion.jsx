@@ -11,7 +11,7 @@ function Navegacion(){
     return(
         <>
             <header>
-                <div><h2>LOGO</h2></div>
+                <div><img src="../../src/assets/img/pokeball.png" alt="" class="logo-img" /></div>
                 <div class="nav-menu">
                     <Link to="/"><span class="nav-link">Inicio</span></Link>
                     <Link to="/listapokemon"><span class="nav-link">Pokédex</span></Link>
