@@ -1,53 +1,15 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import DetallePokemon from './DetallePokemon';
+import { tiposTraducidos, gruposHuevoTraducidos } from './traducciones'; // Importar las traducciones desde el archivo traducciones.jsx
 
 function Busqueda() {
     const [nombrePokemon, setNombrePokemon] = useState('');
     const [detallesPokemon, setDetallesPokemon] = useState(null);
     const [error, setError] = useState(null);
+    const navigateTo = useNavigate();
 
-    // traducción de los tipos
-    const tiposTraducidos = {
-        normal: 'Normal',
-        fighting: 'Lucha',
-        flying: 'Volador',
-        poison: 'Veneno',
-        ground: 'Tierra',
-        rock: 'Roca',
-        bug: 'Bicho',
-        ghost: 'Fantasma',
-        steel: 'Acero',
-        fire: 'Fuego',
-        water: 'Agua',
-        grass: 'Planta',
-        electric: 'Eléctrico',
-        psychic: 'Psíquico',
-        ice: 'Hielo',
-        dragon: 'Dragón',
-        dark: 'Siniestro',
-        fairy: 'Hada'
-    };
-
-    // traducción de los grupo huevo
-    const gruposHuevoTraducidos = {
-        monster: 'Monstruo',
-        water1: 'Agua 1',
-        bug: 'Bicho',
-        flying: 'Volador',
-        ground: 'Tierra',
-        fairy: 'Hada',
-        plant: 'Planta',
-        humanshape: 'Forma humana',
-        mineral: 'Mineral',
-        amorphous: 'Amorfo',
-        water3: 'Agua 3',
-        water2: 'Agua 2',
-        ditto: 'Ditto',
-        dragon: 'Dragón',
-        noeggs: 'Sin huevos',
-        undiscovered: 'No descubierto'
-    };
-
+ 
     const buscarPokemon = async () => {
         try {
             const respuesta = await fetch(`https://pokeapi.co/api/v2/pokemon/${nombrePokemon.toLowerCase()}`);
@@ -55,22 +17,8 @@ function Busqueda() {
                 throw new Error('Error. Pokémon no encontrado.');
             }
             const datos = await respuesta.json();
-
-            const speciesResponse = await fetch(datos.species.url);
-            const speciesData = await speciesResponse.json();
-
-            // Traducción de tipos y grupos huevo
-            const tipos = datos.types.map(type => tiposTraducidos[type.type.name]).join(', ');
-            const grupoHuevo = speciesData.egg_groups.map(group => gruposHuevoTraducidos[group.name]).join(', ');
-
-            setDetallesPokemon({
-                ...datos,
-                tipos,
-                grupoHuevo
-            });
-            setError(null);
+            navigateTo(`/detalle/${datos.id}`); // Navega a la página de detalles con el ID del Pokémon
         } catch (error) {
-            setDetallesPokemon(null);
             setError(error.message);
         }
     };
