@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, deleteUser } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, deleteUser, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import app from './firebaseConfig';
 
 function Landing() {
@@ -45,6 +45,19 @@ function Landing() {
         }
     };
 
+    const handleRegisterWithGoogle = async () => {
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
+
+        try {
+            const result = await signInWithPopup(auth, provider);
+            console.log("Usuario ha iniciado sesión con Google:", result.user.uid);
+            setIsLoggedIn(true);
+        } catch (error) {
+            setError(error.message);
+        }
+    };
+
     const handleUnregister = async () => {
         if (window.confirm("¿Estás seguro de que quieres eliminar tu cuenta?")) {
             const auth = getAuth(app);
@@ -82,6 +95,7 @@ function Landing() {
                         <button type="submit">Iniciar sesión</button>
                     </form>
                     <button onClick={handleRegister}>Registrarse</button>
+                    <button onClick={handleRegisterWithGoogle}>Registrarse con Google</button>
                 </div>
             ) : (
                 <div>
