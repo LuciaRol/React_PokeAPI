@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import ListaPokemon from './ListaPokemon';
 import DetallePokemon from './DetallePokemon';
 import '../App.css';
+import { getFirestore, collection, addDoc, serverTimestamp, query, orderBy, limit, getDocs } from "firebase/firestore";
+import firebaseApp from './firebaseConfig'; // Importar la instancia de Firebase
 
-import { Link } from "react-router-dom";
+const db = getFirestore(firebaseApp);
 
 function Jugar() {
   const [pokemonData, setPokemonData] = useState(null);
@@ -11,19 +13,36 @@ function Jugar() {
   const [totalPokemonCount, setTotalPokemonCount] = useState(0);
   const [inputValue, setInputValue] = useState('');
   const [message, setMessage] = useState('');
-  const [score, setScore] = useState(0); // Estado para almacenar la puntuación
+  const [score, setScore] = useState(0);
 
   useEffect(() => {
     getTotalPokemonCount();
   }, []);
 
-  useEffect(() => {// lo hacemos por separado para que termine gettotalPokemonCount y se lance correctamente fetchRandomPokemon
+  useEffect(() => {
     if (totalPokemonCount > 0) {
       fetchRandomPokemon();
     }
   }, [totalPokemonCount]);
 
-  const fetchRandomPokemon = async () => {
+  useEffect(() => {
+    getLatestScoreFromFirestore();
+  }, []);
+
+  const getLatestScoreFromFirestore = async () => {
+    try {
+      const q = query(collection(db, "puntuacion_juego"), orderBy("timestamp", "desc"), limit(1));
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        const latestScore = doc.data().score;
+        setScore(latestScore);
+      });
+    } catch (error) {
+      console.error("Error al obtener la última puntuación:", error);
+    }
+  };
+
+  const fetchRandomPokemon = async (errorCount = 0) => {
     setLoading(true);
     const randomId = Math.floor(Math.random() * totalPokemonCount) + 1;
     try {
@@ -33,12 +52,18 @@ function Jugar() {
       const imageUrl = data.sprites.other['official-artwork'].front_default;
       setPokemonData({ name: pokemonName, imageUrl: imageUrl });
       setMessage('');
+      setLoading(false);
     } catch (error) {
       console.error('Error fetching random Pokemon:', error);
-    } finally {
-      setLoading(false);
+      if (errorCount < 10) {
+        fetchRandomPokemon(errorCount + 1);
+      } else {
+        console.error('Máximo números errores.');
+        setLoading(false);
+      }
     }
   };
+  
 
   const getTotalPokemonCount = async () => {
     try {
@@ -55,16 +80,36 @@ function Jugar() {
     if (e.key === 'Enter') {
       if (inputValue.toLowerCase() === pokemonData.name.toLowerCase()) {
         setMessage('¡Has acertado!');
-        setScore(score + 10); // Suma 10 puntos si acierta
+        setScore(prevScore => {
+          const newScore = prevScore + 10;
+          saveScoreToFirestore(newScore);
+          return newScore;
+        });
       } else {
         setMessage('¡Has fallado! Este pokemon se llama ' + pokemonData.name);
-        setScore(score - 5); // Resta 5 puntos si falla
+        setScore(prevScore => {
+          const newScore = prevScore - 5;
+          saveScoreToFirestore(newScore);
+          return newScore;
+        });
       }
     }
   };
 
   const handleChange = (e) => {
     setInputValue(e.target.value);
+  };
+
+  const saveScoreToFirestore = async (newScore) => {
+    try {
+      const docRef = await addDoc(collection(db, "puntuacion_juego"), {
+        score: newScore,
+        timestamp: serverTimestamp() 
+      });
+      console.log("Puntuación guardada con éxito:", docRef.id);
+    } catch (error) {
+      console.error("Error al guardar la puntuación:", error);
+    }
   };
 
   return (
@@ -84,7 +129,7 @@ function Jugar() {
           onChange={handleChange} 
           onKeyPress={handleKeyPress} 
         />
-        <p>Puntuación: {score}</p> {/* Muestra la puntuación */}
+        <p>Puntuación: {score}</p>
         <p>{message}</p>
         {loading ? (
           <p>Cargando...</p>
