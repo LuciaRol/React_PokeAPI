@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react';
 import ListaPokemon from './ListaPokemon';
 import DetallePokemon from './DetallePokemon';
 import '../App.css';
-import { getFirestore, collection, addDoc, serverTimestamp, query, orderBy, limit, getDocs } from "firebase/firestore";
+import { getFirestore, collection, addDoc, serverTimestamp, query, orderBy, limit, getDocs, where } from "firebase/firestore";
+import { getAuth } from 'firebase/auth'; // Importa getAuth desde firebase/auth
 import firebaseApp from './firebaseConfig'; // Importar la instancia de Firebase
+import app from './firebaseConfig';
+
 
 const db = getFirestore(firebaseApp);
 
@@ -31,17 +34,26 @@ function Jugar() {
 
   const getLatestScoreFromFirestore = async () => {
     try {
-      const q = query(collection(db, "puntuacion_juego"), orderBy("timestamp", "desc"), limit(1));
-      const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((doc) => {
-        const latestScore = doc.data().score;
-        setScore(latestScore);
-      });
+      const auth = getAuth(app);
+      const user = auth.currentUser;
+  
+      if (user) {
+        const q = query(collection(db, "puntuacion_juego"), 
+                        where("userEmail", "==", user.email),
+                        orderBy("timestamp", "desc"), 
+                        limit(1));
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+          const latestScore = doc.data().score;
+          setScore(latestScore);
+        });
+      } else {
+        console.error("No se pudo obtener el usuario actual.");
+      }
     } catch (error) {
       console.error("Error al obtener la última puntuación:", error);
     }
   };
-
   const fetchRandomPokemon = async (errorCount = 0) => {
     setLoading(true);
     const randomId = Math.floor(Math.random() * totalPokemonCount) + 1;
@@ -82,14 +94,14 @@ function Jugar() {
         setMessage('¡Has acertado!');
         setScore(prevScore => {
           const newScore = prevScore + 10;
-          saveScoreToFirestore(newScore);
+          saveScoreToFirestore(newScore); // Aquí se llama a saveScoreToFirestore
           return newScore;
         });
       } else {
         setMessage('¡Has fallado! Este pokemon se llama ' + pokemonData.name);
         setScore(prevScore => {
           const newScore = prevScore - 5;
-          saveScoreToFirestore(newScore);
+          saveScoreToFirestore(newScore); // Y aquí también
           return newScore;
         });
       }
@@ -102,11 +114,19 @@ function Jugar() {
 
   const saveScoreToFirestore = async (newScore) => {
     try {
-      const docRef = await addDoc(collection(db, "puntuacion_juego"), {
-        score: newScore,
-        timestamp: serverTimestamp() 
-      });
-      console.log("Puntuación guardada con éxito:", docRef.id);
+      const auth = getAuth(app);
+      const user = auth.currentUser;
+  
+      if (user) {
+        const docRef = await addDoc(collection(db, "puntuacion_juego"), {
+          score: newScore,
+          userEmail: user.email,
+          timestamp: serverTimestamp() 
+        });
+        console.log("Puntuación guardada con éxito:", docRef.id);
+      } else {
+        console.error("No se pudo obtener el usuario actual.");
+      }
     } catch (error) {
       console.error("Error al guardar la puntuación:", error);
     }
