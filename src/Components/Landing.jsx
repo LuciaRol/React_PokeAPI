@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, deleteUser, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import app from './firebaseConfig';
 
+import {
+    Link
+} from "react-router-dom";
+
 function Landing() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -36,6 +40,7 @@ function Landing() {
         e.preventDefault();
         const auth = getAuth(app);
 
+    /* registrase con email/contraseña */
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             console.log("Usuario creado:", userCredential.user.uid);
@@ -45,6 +50,7 @@ function Landing() {
         }
     };
 
+    /* registrarse con google */
     const handleRegisterWithGoogle = async () => {
         const auth = getAuth(app);
         const provider = new GoogleAuthProvider();
@@ -55,19 +61,6 @@ function Landing() {
             setIsLoggedIn(true);
         } catch (error) {
             setError(error.message);
-        }
-    };
-
-    const handleUnregister = async () => {
-        if (window.confirm("¿Estás seguro de que quieres eliminar tu cuenta?")) {
-            const auth = getAuth(app);
-            
-            try {
-                await deleteUser(auth.currentUser);
-                setIsLoggedIn(false);
-            } catch (error) {
-                console.error('Error al eliminar la cuenta:', error);
-            }
         }
     };
 
@@ -99,9 +92,11 @@ function Landing() {
                 </div>
             ) : (
                 <div>
+                    <div> 
+                        <Link to="/jugar"><span class="nav-link">Jugar</span></Link>
+                        <button onClick={handleLogout}>Cerrar sesión</button>
+                    </div>
                     <p>Hola, {email}!</p>
-                    <button onClick={handleLogout}>Cerrar sesión</button>
-                    <button onClick={handleUnregister}>Eliminar cuenta</button>
                 </div>
             )}
             {error && <p>La cuenta no existe</p>}
