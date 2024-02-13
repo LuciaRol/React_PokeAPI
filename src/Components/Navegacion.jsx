@@ -45,9 +45,16 @@ function Navegacion(){
         <>
             <header>
                 <div><img src="../../src/assets/img/pokeball.png" alt="" class="logo-img" /></div>
+
+                <div class="nav-menu">
+                    <Link to="/"><span class="nav-link">Inicio</span></Link>
+                    <Link to="/listapokemon"><span class="nav-link">Pokédex</span></Link>
+                    {/* <Link to="/jugar"><span class="nav-link">Jugar</span></Link> */}
+                    
+                </div>
+
                 {!isLoggedIn ? (
-                <div>
-                    <h2>Iniciar sesión</h2>
+                <div className='nav_input'>
                     <form onSubmit={handleLogin}>
                         <input
                             type="email"
@@ -69,7 +76,7 @@ function Navegacion(){
                 </div>
             ) : (
                 <div>
-                    <div> 
+                    <div class='nav-toggle'> 
                         <Link to="/jugar"><span className="nav-link">Jugar</span></Link>
                         <button onClick={handleLogout}>Cerrar sesión</button>
                       
@@ -77,12 +84,7 @@ function Navegacion(){
                     <p>Hola, {email}!</p>
                 </div>
             )}
-                <div class="nav-menu">
-                    <Link to="/"><span class="nav-link">Inicio</span></Link>
-                    <Link to="/listapokemon"><span class="nav-link">Pokédex</span></Link>
-                    {/* <Link to="/jugar"><span class="nav-link">Jugar</span></Link> */}
-                    
-                </div>
+                
                 
             </header>
             

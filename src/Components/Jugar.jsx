@@ -70,7 +70,7 @@ function Jugar() {
       if (errorCount < 10) {
         fetchRandomPokemon(errorCount + 1);
       } else {
-        console.error('Máximo números errores.');
+        console.error('Máximo números de errores.');
         setLoading(false);
       }
     }
@@ -125,7 +125,7 @@ function Jugar() {
         });
         console.log("Puntuación guardada con éxito:", docRef.id);
       } else {
-        console.error("No se pudo obtener el usuario actual.");
+        console.error("No se pudo encontrar el usuario actual.");
       }
     } catch (error) {
       console.error("Error al guardar la puntuación:", error);
@@ -139,7 +139,7 @@ function Jugar() {
         {pokemonData && (
           <div>
             <p>Nombre del Pokémon: {pokemonData.name}</p>
-            <img src={pokemonData.imageUrl} alt="" />
+            <img className="game-img" src={pokemonData.imageUrl} alt="" />
           </div>
         )}
         <input 
