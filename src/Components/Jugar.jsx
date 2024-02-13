@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import ListaPokemon from './ListaPokemon';
-import DetallePokemon from './DetallePokemon';
 import '../App.css';
 import { getFirestore, collection, addDoc, serverTimestamp, query, orderBy, limit, getDocs, where } from "firebase/firestore";
-import { getAuth } from 'firebase/auth'; // Importa getAuth desde firebase/auth
-import firebaseApp from './firebaseConfig'; // Importar la instancia de Firebase
-import app from './firebaseConfig';
-
+import { getAuth } from 'firebase/auth';
+import firebaseApp from './firebaseConfig';
 
 const db = getFirestore(firebaseApp);
 
@@ -17,9 +13,12 @@ function Jugar() {
   const [inputValue, setInputValue] = useState('');
   const [message, setMessage] = useState('');
   const [score, setScore] = useState(0);
+  const [topScores, setTopScores] = useState([]);
 
   useEffect(() => {
     getTotalPokemonCount();
+    getLatestScoreFromFirestore();
+    getTopScoresFromFirestore();
   }, []);
 
   useEffect(() => {
@@ -28,13 +27,9 @@ function Jugar() {
     }
   }, [totalPokemonCount]);
 
-  useEffect(() => {
-    getLatestScoreFromFirestore();
-  }, []);
-
   const getLatestScoreFromFirestore = async () => {
     try {
-      const auth = getAuth(app);
+      const auth = getAuth();
       const user = auth.currentUser;
   
       if (user) {
@@ -54,6 +49,24 @@ function Jugar() {
       console.error("Error al obtener la última puntuación:", error);
     }
   };
+
+  const getTopScoresFromFirestore = async () => {
+    try {
+      const q = query(collection(db, "puntuacion_juego"),
+                      orderBy("score", "desc"),
+                      limit(5));
+      const querySnapshot = await getDocs(q);
+      const topScoresData = [];
+      querySnapshot.forEach((doc) => {
+        const scoreData = doc.data();
+        topScoresData.push(scoreData);
+      });
+      setTopScores(topScoresData);
+    } catch (error) {
+      console.error("Error al obtener el top de puntuaciones:", error);
+    }
+  };
+
   const fetchRandomPokemon = async (errorCount = 0) => {
     setLoading(true);
     const randomId = Math.floor(Math.random() * totalPokemonCount) + 1;
@@ -94,14 +107,14 @@ function Jugar() {
         setMessage('¡Has acertado!');
         setScore(prevScore => {
           const newScore = prevScore + 10;
-          saveScoreToFirestore(newScore); // Aquí se llama a saveScoreToFirestore
+          saveScoreToFirestore(newScore); 
           return newScore;
         });
       } else {
         setMessage('¡Has fallado! Este pokemon se llama ' + pokemonData.name);
         setScore(prevScore => {
           const newScore = prevScore - 5;
-          saveScoreToFirestore(newScore); // Y aquí también
+          saveScoreToFirestore(newScore); 
           return newScore;
         });
       }
@@ -114,7 +127,7 @@ function Jugar() {
 
   const saveScoreToFirestore = async (newScore) => {
     try {
-      const auth = getAuth(app);
+      const auth = getAuth();
       const user = auth.currentUser;
   
       if (user) {
@@ -124,6 +137,7 @@ function Jugar() {
           timestamp: serverTimestamp() 
         });
         console.log("Puntuación guardada con éxito:", docRef.id);
+        getTopScoresFromFirestore();
       } else {
         console.error("No se pudo encontrar el usuario actual.");
       }
@@ -156,6 +170,14 @@ function Jugar() {
         ) : (
           null
         )}
+        <div>
+          <h2>Top 5 de Puntuaciones:</h2>
+          <ul>
+            {topScores.map((scoreData, index) => (
+              <li key={index}>{scoreData.score} - {scoreData.userEmail}</li>
+            ))}
+          </ul>
+        </div>
       </div>
     </>
   );  
