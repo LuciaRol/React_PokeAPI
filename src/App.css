@@ -59,8 +59,8 @@
   --font-color: #000;
   --contrast-color: #263238;
 
-  --font-size: 1.2rem;
-  --font-size-hover: 1.5rem;
+  --font-size: 1rem;
+  --font-size-hover: 1.2rem;
   --font-family: 'Arial';
 }
 
@@ -109,6 +109,22 @@ header .nav_input{
   flex-direction: row;
   align-items: center;
 }
+
+header .nav_input input{
+  padding: 2px;
+}
+
+header .nav-btn{
+  color: var(--bg-color);
+  background-color: transparent;
+  border: none;
+}
+
+header .nav-btn:hover{
+  font-size: var(--font-size-hover);
+}
+
+
 
 header input{
   

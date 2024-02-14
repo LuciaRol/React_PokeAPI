@@ -44,7 +44,7 @@ function Navegacion(){
     return(
         <>
             <header>
-                <div><img src="../../src/assets/img/pokeball.png" alt="" class="logo-img" /></div>
+                <div><img src="../../src/assets/img/hello.png" alt="" class="logo-img" /></div>
 
                 <div class="nav-menu">
                     <Link to="/"><span class="nav-link">Inicio</span></Link>
@@ -70,7 +70,7 @@ function Navegacion(){
                             onChange={(e) => setPassword(e.target.value)}
                             required
                         />
-                        <button type="submit">Iniciar sesión</button>
+                        <button type="submit" className='nav-btn'>Iniciar sesión</button>
                     </form>
                     
                 </div>
