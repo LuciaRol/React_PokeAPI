@@ -2,12 +2,10 @@ import {useState,useEffect} from 'react'
 import ListaPokemon from './ListaPokemon';
 import DetallePokemon from './DetallePokemon';
 import '../App.css'
-import { getAuth, signInWithEmailAndPassword, signOut} from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged} from 'firebase/auth';
 import app from './firebaseConfig';
+import { Link } from "react-router-dom";
 
-import {
-    Link
-} from "react-router-dom";
 
 function Navegacion(){
 
@@ -15,6 +13,22 @@ function Navegacion(){
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        const auth = getAuth(app);
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setIsLoggedIn(true);
+                setEmail(user.email);
+            } else {
+                setIsLoggedIn(false);
+                setEmail('');
+            }
+        });
+
+        return () => unsubscribe();
+    }, []);
+    
 
     const handleLogin = async (e) => {
         e.preventDefault();

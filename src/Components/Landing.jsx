@@ -31,33 +31,35 @@ function Landing() {
     const handleRegisterWithGoogle = async () => {
         const auth = getAuth(app);
         const provider = new GoogleAuthProvider();
-
+    
         try {
             const result = await signInWithPopup(auth, provider);
             console.log("Usuario ha iniciado sesión con Google:", result.user.uid);
             setIsLoggedIn(true);
             setRegistrationSuccess(true);
-            setError(null); // Limpiar el mensaje de error
+            setError(null); 
+            window.location.href = "/"; 
         } catch (error) {
             setError(error.message);
         }
     };
-
+    
     const handleRegisterWithFacebook = async () => {
         const auth = getAuth(app);
         const provider = new FacebookAuthProvider();
-
+    
         try {
             const result = await signInWithPopup(auth, provider);
             console.log("Usuario ha iniciado sesión con Facebook:", result.user.uid);
             setIsLoggedIn(true);
             setRegistrationSuccess(true);
-            setError(null); // Limpiar el mensaje de error
+            setError(null); 
+            window.location.href = "/"; 
         } catch (error) {
             setError(error.message);
         }
     };
-
+    
     return (
         <div className="container-landing">
             <div><img src="../../src/assets/img/eeveevolutions.png" alt="" class="landing-img" /></div>
