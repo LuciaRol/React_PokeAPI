@@ -60,11 +60,11 @@ function Landing() {
 
     return (
         <div className="container-landing">
-            <h1>ESTE ES EL COMPONENTE LANDING</h1>
+            <div><img src="../../src/assets/img/eeveevolutions.png" alt="" class="landing-img" /></div>
             {registrationSuccess && <p>¡Registrado correctamente!</p>}
-            <div>
-                <h2>Registrarse</h2>
-                <form onSubmit={handleRegister}>
+            <div className='landing-register'>
+                <h2>Regístrate</h2>
+                <form className='landing-form' onSubmit={handleRegister}>
                     <input
                         type="email"
                         placeholder="Correo electrónico"
@@ -85,9 +85,6 @@ function Landing() {
                 <button onClick={handleRegisterWithFacebook}>Registrarse con Facebook</button>
             </div>
             {error && <p>{error}</p>}
-            <div>
-                <p>¿Ya tienes una cuenta? <Link to="/login">Inicia sesión aquí</Link></p>
-            </div>
         </div>
     );
 }
