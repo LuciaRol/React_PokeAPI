@@ -44,22 +44,7 @@ function Busqueda() {
         />
     </>
 
-    let caracteristicas =
-    <>
-        {detallesPokemon && (
-            <div className="card">
-                <div className="card-header">{detallesPokemon.name}</div>
-                <div className="card-body">
-                    <img src={detallesPokemon.sprites.front_default} alt={detallesPokemon.name} class="img" />
-                    <p><strong>Número:</strong> {detallesPokemon.id}</p>
-                    <p><strong>Altura:</strong> {detallesPokemon.height / 10} m</p>
-                    <p><strong>Peso:</strong> {detallesPokemon.weight / 10} kg</p>
-                    <p><strong>Tipo:</strong> {detallesPokemon.tipos}</p>
-                    <p><strong>Grupo Huevo:</strong> {detallesPokemon.grupoHuevo}</p>
-                </div>
-            </div>
-        )}
-    </>
+    
 
     return (
         <>
@@ -68,7 +53,6 @@ function Busqueda() {
                     {buscar}
                     <button class="btn btn-primary" onClick={buscarPokemon}>Buscar</button>
                 </div>
-                {caracteristicas}
                 {error && <div class="alert alert-danger">{error}</div>}
             </div>
         </>
