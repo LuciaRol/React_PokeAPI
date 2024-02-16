@@ -261,14 +261,30 @@ footer .btn{
 
 
 /* COMPONENTE DETALLE */
-.containerdetalle{
-  display:flex;
+.detalle-content {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
 }
 
-section{
+.column {
+  flex-grow: 1;
+  margin: 0 10px;
   display: flex;
   flex-direction: column;
+  align-items: center; /* Centra los elementos verticalmente en la columna */
+  width: 30%; /* Establecemos que las columnas ocupen la mitad del contenedor principal */
 }
+
+img {
+  width: 100px;
+  height: 100px;
+  max-width: 100%;
+  height: auto;
+}
+
+
+
 
 /* JUEGO */
 .container-game {

@@ -32,21 +32,25 @@ export default function DetallePokemon() {
     }, [detallePokemon]);
 
     return (
-        <>
-            <section>
-                <h1 className="title">DETALLE DEL POKÉMON</h1>
-                <div className="btn-group">
-                    <button className="btn"><Link to="/listapokemon"><span className="nav-link">Volver</span></Link></button>
-                </div>
-                {detallePokemon && (
-                    <div>
+        <section className="detalle-container">
+            <h1 className="title">DETALLE DEL POKÉMON</h1>
+            <div className="btn-group">
+                <button className="btn"><Link to="/listapokemon"><span className="nav-link">Volver</span></Link></button>
+            </div>
+            {detallePokemon && (
+                <div className="detalle-content">
+                    <div className="column">
                         <img src={detallePokemon.sprites.front_default} alt={detallePokemon.name} />
+                    </div>
+                    <div className="column">
                         <p>Número: {detallePokemon.id}</p>
                         <p>Tipo: {detallePokemon.types.map(type => tiposTraducidos[type.type.name]).join(', ')}</p>
                         <p>Peso: {detallePokemon.weight / 10} kg</p>
                         <p>Altura: {detallePokemon.height / 10} m</p>
                         <p>Grupo Huevo: {grupoHuevo}</p>
                         <p>Hábitat: {habitat}</p>
+                    </div>
+                    <div className="column">
                         <p>Stats:</p>
                         <ul>
                             {detallePokemon.stats.map(stat => (
@@ -54,9 +58,9 @@ export default function DetallePokemon() {
                             ))}
                         </ul>
                     </div>
-                )}
-                {!detallePokemon && <p>Cargando...</p>}
-            </section>
-        </>
+                </div>
+            )}
+            {!detallePokemon && <p>Cargando...</p>}
+        </section>
     );
 }

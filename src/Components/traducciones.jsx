@@ -29,7 +29,7 @@ export const gruposHuevoTraducidos = {
     ground: 'Tierra',
     fairy: 'Hada',
     plant: 'Planta',
-    humanshape: 'Forma humana',
+    humanshape: 'Humanoide',
     mineral: 'Mineral',
     amorphous: 'Amorfo',
     water3: 'Agua 3',
