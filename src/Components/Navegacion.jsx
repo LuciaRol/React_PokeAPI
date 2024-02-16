@@ -65,7 +65,7 @@ function Navegacion(){
                     <Link to="/listapokemon"><span class="nav-link">Pokédex</span></Link>
                     {/* <Link to="/jugar"><span class="nav-link">Jugar</span></Link> */}
                     
-                </div>
+                
 
                 {!isLoggedIn ? (
                 <div className='nav_input'>
@@ -93,11 +93,12 @@ function Navegacion(){
                     <div class='nav-toggle'> 
                         <Link to="/jugar"><span className="nav-link">Jugar</span></Link>
                         <button onClick={handleLogout}>Cerrar sesión</button>
-                      
+                        <p>Hola, {email}!</p>
                     </div>
-                    <p>Hola, {email}!</p>
                 </div>
             )}
+
+</div>
                 
                 
             </header>

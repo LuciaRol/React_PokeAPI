@@ -69,6 +69,7 @@
 body{
   color: var(--font-color);
   font-family: var(--font-family);
+  background-color: var(--bg-color);
   
 }
 
@@ -125,27 +126,46 @@ header .nav-btn:hover{
   font-size: var(--font-size-hover);
 }
 
+header .nav-toggle{
+  display: flex;
+  align-items: center;
 
-
-header input{
-  
 }
+
+header .nav-toggle button{
+  background-color: transparent;
+  color: var(--bg-color);
+}
+
+header .nav-toggle p{
+  color: var(--secondary-color);
+}
+
+
+
 
 
 /* BÚSQUEDA */
 .container-search{
-  background-color: var(--bg-color);
+  background-color: var(--secondary-color);
+  display: flex;
+  justify-content: center;
+  padding-top: 10rem;
 }
 
 /* LANDING */
 .container-landing{
     background: linear-gradient(to bottom, var(--secondary-color), var(--bg-color));
     width: 100%;
-    height: 85vh;
+    height: 60vh;
     display: flex;
-    padding-top: 10rem;
     padding-bottom: 0;
     justify-content: center;
+}
+
+.landing-img{
+  width: 100%;
+  height: 60%;
 }
 
 .landing-register{
@@ -172,6 +192,7 @@ footer{
   bottom: 0;
   position: relative;
   width: 100vw;
+  padding-bottom: 1rem;
 }
 
 footer .btn{

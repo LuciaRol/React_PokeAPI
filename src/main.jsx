@@ -19,8 +19,8 @@ const router = createBrowserRouter([
     element: 
     <>
       <Navegacion></Navegacion>
-      <App></App>
       <Busqueda></Busqueda>
+      <App></App>
       <Footer></Footer>
     </>
     ,
