@@ -37,7 +37,6 @@ export default function DetallePokemon() {
                 <h1 className="title">DETALLE DEL POKÉMON</h1>
                 <div className="btn-group">
                     <button className="btn"><Link to="/listapokemon"><span className="nav-link">Volver</span></Link></button>
-                    <button className="btn"><Link to="/jugar"><span className="nav-link">Ir a jugar</span></Link></button>
                 </div>
                 {detallePokemon && (
                     <div>

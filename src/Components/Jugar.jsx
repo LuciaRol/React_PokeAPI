@@ -152,7 +152,7 @@ function Jugar() {
         <button className="game-btn" onClick={fetchRandomPokemon}>Nuevo Pokémon</button>
         {pokemonData && (
           <div>
-            <p>Nombre del Pokémon: {pokemonData.name}</p>
+            <p>Pista (selecciona): <span class="pista">{pokemonData.name}</span> </p>
             <img className="game-img" src={pokemonData.imageUrl} alt="" />
           </div>
         )}
@@ -171,7 +171,7 @@ function Jugar() {
           null
         )}
         <div>
-          <h2>Top 5 de Puntuaciones:</h2>
+          <h2>Top 5 puntuaciones:</h2>
           <ul>
             {topScores.map((scoreData, index) => (
               <li key={index}>{scoreData.score} - {scoreData.userEmail}</li>

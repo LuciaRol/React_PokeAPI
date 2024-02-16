@@ -271,9 +271,88 @@ section{
 }
 
 /* JUEGO */
-.game-img{
+.container-game {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.game-img {
+  width: 300px;
+  height: 300px;
+  margin: 20px auto;
   filter: brightness(0%);
 }
+
+
+.pista{
+  background-color: #000;
+  text-transform: capitalize;
+}
+
+.container-game {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 100px;
+}
+
+.game-img {
+  width: 300px;
+  height: 300px;
+}
+
+input[type="text"] {
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  width: 50%;
+}
+
+.game-btn {
+  padding: 10px 20px;
+  background-color: var(--contrast-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.game-btn:hover {
+  background-color: var(--main-color);
+}
+
+
+ul {
+  list-style: none;
+  padding-bottom: 20px;
+}
+
+li {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.loading {
+  font-style: italic;
+}
+
+.message {
+  font-weight: bold;
+}
+
+.top-scores {
+  margin-top: 30px;
+}
+
+h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+
 
 
 

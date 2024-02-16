@@ -92,7 +92,7 @@ function Navegacion(){
                 <div>
                     <div class='nav-toggle'> 
                         <Link to="/jugar"><span className="nav-link">Jugar</span></Link>
-                        <button onClick={handleLogout}>Cerrar sesión</button>
+                        <Link onClick={handleLogout} to="/"><span className="nav-link">Cerrar sesión</span></Link>
                         <p>Hola, {email}!</p>
                     </div>
                 </div>
