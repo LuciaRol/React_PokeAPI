@@ -201,6 +201,64 @@ footer .btn{
 
 
 /* COMPONENTE LISTA */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.pokemon-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+}
+
+
+.pokemon-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pokemon-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.pokemon-info .pokemon-name{
+ text-transform: uppercase;
+}
+
+.img-lista {
+  width: 200px;
+  height: 200px;
+}
+
+.pokemon-info .nav-link {
+  margin-top: 20px;
+  padding: 5px 10px;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: var(--bg-color);
+  color: var(--main-color);
+}
+
+.pokemon-info .nav-link:hover {
+  color: var(--secondary-color);
+}
+
 
 /* COMPONENTE DETALLE */
 .containerdetalle{
