@@ -44,7 +44,7 @@ export default function DetallePokemon() {
                     </div>
                     <div className="column">
                         <p>Número: {detallePokemon.id}</p>
-                        <p>Número: {detallePokemon.name}</p>
+                        <p>Nombre: {detallePokemon.name}</p>
                         <p>Tipo: {detallePokemon.types.map(type => tiposTraducidos[type.type.name]).join(', ')}</p>
                         <p>Peso: {detallePokemon.weight / 10} kg</p>
                         <p>Altura: {detallePokemon.height / 10} m</p>
